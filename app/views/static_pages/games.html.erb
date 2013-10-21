@@ -17,7 +17,85 @@
           <h3 class="panel-title">Games list</h3>
         </div>
         <div class="panel-body">
-          Panel content
+          <div class="list-group">
+            <a href="#" class="list-group-item active">
+              <div class="pull-left" style="font-size:2em;margin-right:7px">
+                Oct 20
+              </div>
+              <div>
+                <h4 class="list-group-item-heading">CMU Practice - Soccer</h4>
+                <p class="list-group-item-text">
+                  Sun, Oct 20 09:00 PM - 10:00 PM
+                </p>
+              </div>
+            </a>
+            <a href="#" class="list-group-item">
+              <div class="pull-left" style="font-size:2em;margin-right:7px">
+                Oct 20
+              </div>
+              <div>
+                <h4 class="list-group-item-heading">CMU Practice - Soccer</h4>
+                <p class="list-group-item-text">
+                  Sun, Oct 20 09:00 PM - 10:00 PM
+                </p>
+              </div>
+            </a>
+            <a href="#" class="list-group-item">
+              <div class="pull-left" style="font-size:2em;margin-right:7px">
+                Oct 20
+              </div>
+              <div>
+                <h4 class="list-group-item-heading">CMU Practice - Soccer</h4>
+                <p class="list-group-item-text">
+                  Sun, Oct 20 09:00 PM - 10:00 PM
+                </p>
+              </div>
+            </a>
+            <a href="#" class="list-group-item">
+              <div class="pull-left" style="font-size:2em;margin-right:7px">
+                Oct 20
+              </div>
+              <div>
+                <h4 class="list-group-item-heading">CMU Practice - Soccer</h4>
+                <p class="list-group-item-text">
+                  Sun, Oct 20 09:00 PM - 10:00 PM
+                </p>
+              </div>
+            </a>
+            <a href="#" class="list-group-item">
+              <div class="pull-left" style="font-size:2em;margin-right:7px">
+                Oct 20
+              </div>
+              <div>
+                <h4 class="list-group-item-heading">CMU Practice - Soccer</h4>
+                <p class="list-group-item-text">
+                  Sun, Oct 20 09:00 PM - 10:00 PM
+                </p>
+              </div>
+            </a>
+            <a href="#" class="list-group-item">
+              <div class="pull-left" style="font-size:2em;margin-right:7px">
+                Oct 20
+              </div>
+              <div>
+                <h4 class="list-group-item-heading">CMU Practice - Soccer</h4>
+                <p class="list-group-item-text">
+                  Sun, Oct 20 09:00 PM - 10:00 PM
+                </p>
+              </div>
+            </a>
+            <a href="#" class="list-group-item">
+              <div class="pull-left" style="font-size:2em;margin-right:7px">
+                Oct 20
+              </div>
+              <div>
+                <h4 class="list-group-item-heading">CMU Practice - Soccer</h4>
+                <p class="list-group-item-text">
+                  Sun, Oct 20 09:00 PM - 10:00 PM
+                </p>
+              </div>
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -25,18 +103,56 @@
 </div>
 
 <script>
+var map;
+var poiMarkers = [];
+
 function initialize() {
   var initLatLng = new google.maps.LatLng(37.411367,-122.058884); // CMU SV Bldg 23
-  // var initLatLng = new google.maps.LatLng(37.392374,-122.045046); // My home
   map = new google.maps.Map(document.getElementById('map-canvas'), {
-    zoom: 19,
+    zoom: 17,
     center: initLatLng,
     mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+
+  markPOIs();
+}
+
+function markPOIs() {
+  var poiRaw = [
+    // CMUSV
+    [37.410709,-122.060123],
+    [37.410841,-122.059715],
+    [37.41173,-122.059165],
+    [37.411879,-122.058693],
+    [37.41207,-122.058135],
+  ];
+  var poiLatLng = [];
+  for (i=0; i<poiRaw.length; i++) {
+    poiLatLng[i] = new google.maps.LatLng(poiRaw[i][0],poiRaw[i][1]);
+
+    poiMarkers[i] = new google.maps.Marker({
+      map: map,
+      position: poiLatLng[i],
+    });
+
+    attachMessage(poiMarkers[i], "<h4>CMU Practice - Soccer</h4><p>Huntington Beach Sports Complex, 18100 Goldenwest Street<br>Huntington Beach, CA 92647, USA<br>Sun, Oct 20 09:00 PM - 10:00 PM</p>");
+  }
+
+}
+
+/*show messages on pins*/
+function attachMessage(marker, message) {
+  var infowindow = new google.maps.InfoWindow({
+    content: message,
+  });
+
+  google.maps.event.addListener(marker, 'click', function() {
+    infowindow.open(marker.get('map'), marker);
   });
 }
 
 /* Initial Google Maps after the page is loaded */
 $(function() {
-google.maps.event.addDomListener(window, 'load', initialize);
+  google.maps.event.addDomListener(window, 'load', initialize);
 });
 </script>
