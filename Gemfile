@@ -36,3 +36,16 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
+#
+
+# Google API 
+gem 'google-api-client'
+
+# Fixed Certificate Error for SSL
+gem 'certified'
+
+
+gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
+                              :github => 'anjlab/bootstrap-rails'
+
+gem 'd3-rails'
