@@ -3,6 +3,7 @@ SportAnalytics::Application.routes.draw do
   # first created -> highest priority.
 
   root :to => 'static_pages#main'
+  match 'games' => 'static_pages#games'
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action

@@ -1,0 +1,42 @@
+<div class="col-md-10">
+
+  <div class="row">
+
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">Map</div>
+        <div class="panel-body">
+          <div id="map-canvas"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Games list</h3>
+        </div>
+        <div class="panel-body">
+          Panel content
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function initialize() {
+  var initLatLng = new google.maps.LatLng(37.411367,-122.058884); // CMU SV Bldg 23
+  // var initLatLng = new google.maps.LatLng(37.392374,-122.045046); // My home
+  map = new google.maps.Map(document.getElementById('map-canvas'), {
+    zoom: 19,
+    center: initLatLng,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+}
+
+/* Initial Google Maps after the page is loaded */
+$(function() {
+google.maps.event.addDomListener(window, 'load', initialize);
+});
+</script>
